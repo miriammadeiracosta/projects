@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>News</title>
+    <meta charset="utf‐8" />
+    <link rel="stylesheet" href="assets/style.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      function carregar() {
+        var url = "http://news.google.com/news?ned=us&topic=h&output=rss";
+        $.ajax({
+          url:
+            "https://api.rss2json.com/v1/api.json?rss_url=" +
+            encodeURIComponent(url),
+          type: "GET",
+          dataType: "json",
+          success: function (data) {
+            var frase = "";
+            for (var i = 0; i < Math.min(data.items.length, 3); i++) {
+              frase += "Título: <b>" + data.items[i].title + "</b><br/>";
+              frase += data.items[i].description + "<br/>";
+            }
+            $("#caixa").html(frase);
+          },
+          error: function (xhr, status) {
+            alert("Ocorreu um erro.");
+          },
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <nav class="navbar navbar-dark bg-dark">
+      <div class="navbar-items">
+        <a href="homepage.html" class="navbar-item">Homepage</a>
+        <a href="portfolio.html" class="navbar-item">Portfolio</a>
+        <a href="quotation.html" class="navbar-item">Budget</a>
+        <a href="contacts.html" class="navbar-item">Contacts</a>
+      </div>
+      <div class="navbar-item" onclick="window.location.href='news.html';">
+        <i class="fas fa-newspaper"></i> News
+      </div>
+    </nav>
+    <a href="#" onclick="carregar()">Click to see the News</a>
+    <div id="caixa">The news will be loaded into this box.</div>
+  </body>
+</html>

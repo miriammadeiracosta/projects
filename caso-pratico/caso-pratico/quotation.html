@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/estilos.css" />
+    <link rel="stylesheet" href="assets/style.css" />
+    <title>Quote Request Form</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-dark bg-dark">
+      <div class="navbar-items">
+        <a href="homepage.html" class="navbar-item">Homepage</a>
+        <a href="portfolio.html" class="navbar-item">Portfolio</a>
+        <a href="quotation.html" class="navbar-item">Quotation</a>
+        <a href="contacts.html" class="navbar-item">Contacts</a>
+      </div>
+      <div class="navbar-item" onclick="window.location.href='news.html';">
+        <i class="fas fa-newspaper"></i> News
+      </div>
+    </nav>
+
+    <div class="caixa1">
+      <br />
+      <form
+        action=""
+        method=""
+        id="Formulario"
+        name=""
+        onsubmit="return validar(this)"
+      >
+        <h3>FILL IN THE FOLLOWING FIELDS:</h3>
+        <table>
+          <tr>
+            <td>
+              <h5>Name:</h5>
+            </td>
+            <td style="font-size: 20px">
+              <input
+                class="textbox"
+                type="text"
+                name="nome"
+                maxlength="50"
+                size="40"
+                id="nome"
+                value=""
+                placeholder="First and last name"
+                required
+              />
+              *
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <h5>Phone:</h5>
+            </td>
+            <td style="font-size: 20px">
+              <input
+                class="textbox"
+                type="text"
+                name="telemovel"
+                maxlength="9"
+                size="40"
+                id="telemovel"
+                value=""
+                placeholder="Your phone number"
+                required
+              />
+              *
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <h5>E-mail:</h5>
+            </td>
+            <td style="font-size: 20px">
+              <input
+                class="textbox"
+                type="text"
+                name="email"
+                maxlength="50"
+                size="40"
+                id="email"
+                value=""
+                placeholder="Your e-mail"
+                required
+              />
+              *
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <p style="font-size: small">
+                (*) Fields marked with an asterisk are mandatory.
+              </p>
+            </td>
+          </tr>
+        </table>
+        <br />
+      </form>
+
+      <br />
+
+      <h2 style="font-size: large">QUOTE REQUEST:</h2>
+
+      <form id="quoteForm">
+        <div id="caixa1">
+          <label for="pageType">Page Type:</label>
+          <select id="pageType" name="pageType">
+            <option value="0">Select page type</option>
+            <option value="1000">E-commerce</option>
+            <option value="600">Personal Website</option>
+            <option value="750">Portfolio</option>
+          </select>
+        </div>
+
+        <div class="caixa1">
+          <label for="deadlineMonths">Deadline in Months:</label>
+          <input
+            type="number"
+            id="deadlineMonths"
+            name="deadlineMonths"
+            min="1"
+            max="4"
+          />
+        </div>
+        <br />
+
+        <div class="caixa1">
+          <label>DESIRED TABS:</label><br />
+          <input type="checkbox" id="aboutUs" name="tabs" value="400" />
+          <label for="aboutUs">About Us</label><br />
+          <input type="checkbox" id="location" name="tabs" value="400" />
+          <label for="location">Location</label><br />
+          <input type="checkbox" id="photoGallery" name="tabs" value="400" />
+          <label for="photoGallery">Photo Gallery</label><br />
+          <input type="checkbox" id="news" name="tabs" value="400" />
+          <label for="news">News</label><br />
+          <input type="checkbox" id="socialMedia" name="tabs" value="400" />
+          <label for="socialMedia">Social Media</label><br />
+        </div>
+
+        <div class="caixa1">
+          <label for="finalQuote">FINAL QUOTES:</label>
+          <input type="text" id="finalQuote" readonly />
+        </div>
+        <br />
+
+        <p style="font-size: small; color: rgb(88, 87, 87)">
+          The amount quoted is an estimate and may change.
+        </p>
+        <br />
+
+        <div class="botoes">
+          <input
+            type="submit"
+            name="Botao enviar"
+            class="botao cinza"
+            value="SUBMIT"
+          />
+          <input
+            type="reset"
+            name="Botao apagar"
+            class="botao cinza"
+            value="DELETE"
+          />
+        </div>
+      </form>
+    </div>
+
+    <script>
+      document
+        .getElementById("quoteForm")
+        .addEventListener("input", function () {
+          calculateQuote();
+        });
+
+      function calculateQuote() {
+        var pageType = parseInt(document.getElementById("pageType").value);
+        var deadlineMonths = parseInt(
+          document.getElementById("deadlineMonths").value
+        );
+        var tabs = document.querySelectorAll('input[name="tabs"]:checked');
+        var totalTabs = 0;
+        tabs.forEach(function (tab) {
+          totalTabs += parseInt(tab.value);
+        });
+
+        var discount = 0;
+        if (deadlineMonths === 1) {
+          discount = 5;
+        } else if (deadlineMonths === 2) {
+          discount = 10;
+        } else if (deadlineMonths === 3) {
+          discount = 15;
+        } else if (deadlineMonths === 4) {
+          discount = 20;
+        }
+
+        var finalQuote = pageType - pageType * (discount / 100) + totalTabs;
+        document.getElementById("finalQuote").value =
+          finalQuote.toFixed(2) + "€";
+      }
+
+      document
+        .getElementById("quoteForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          alert("Quote request submitted successfully!");
+        });
+
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          var firstName = document.getElementById("firstName").value.trim();
+          var lastName = document.getElementById("lastName").value.trim();
+          var phoneNumber = document.getElementById("phoneNumber").value.trim();
+          var email = document.getElementById("email").value.trim();
+
+          if (
+            firstName === "" ||
+            lastName === "" ||
+            phoneNumber === "" ||
+            email === ""
+          ) {
+            alert("Please fill in all contact fields.");
+            return;
+          }
+
+          if (!/^9\d{8}$/.test(phoneNumber)) {
+            alert(
+              "Please enter a valid phone number starting with 9 and containing 9 digits."
+            );
+            return;
+          }
+
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            alert("Please enter a valid email address.");
+            return;
+          }
+        });
+    </script>
+  </body>
+</html>

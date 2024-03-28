@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Homepage</title>
+    <link rel="stylesheet" href="assets/style.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body onload="showImage()">
+    <nav class="navbar navbar-dark bg-dark">
+      <div class="navbar-items">
+        <a href="homepage.html" class="navbar-item">Homepage</a>
+        <a href="portfolio.html" class="navbar-item">Portfolio</a>
+        <a href="quotation.html" class="navbar-item">Quotation</a>
+        <a href="contacts.html" class="navbar-item">Contacts</a>
+      </div>
+      <div class="navbar-item" onclick="window.location.href='news.html';">
+        <i class="fas fa-newspaper"></i> News
+      </div>
+    </nav>
+    <p class="text_1">DiamondScript Studios</p>
+    <main class="main-container">
+      <img
+        src="assets/images/image_1.gif"
+        alt="diamond"
+        class="img-fluid"
+        width="60%"
+        id="main-image"
+        style="display: none"
+        <!--
+        Ocultar
+        a
+        imagem
+        por
+        padrão
+        --
+      />
+      />
+      <p class="text">Brilliant Solutions, Crafted in Code</p>
+    </main>
+
+    <footer class="footer" id="copyright">
+      Copyright © 2024 Miriam Costa. All rights reserved.
+    </footer>
+
+    <script>
+      function showImage() {
+        document.getElementById("main-image").style.display = "block";
+      }
+
+      setTimeout(function () {
+        alert("Welcome to DiamondScript Studios!");
+      }, 5000);
+    </script>
+  </body>
+</html>

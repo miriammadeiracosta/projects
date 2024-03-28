@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="O meu primeiro layout" />
+    <title>Contacts</title>
+    
+    <script
+      src="https://kit.fontawesome.com/d132031da6.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/estilos.css" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYJ8DZxeqYTlprmlPsOuc9TVRygk08pJ4&callback=initMap" async defer></script>
+    <script type="text/JavaScript">
+      function validateForm() {
+    var firstName = document.getElementById('firstName').value.trim();
+    var lastName = document.getElementById('lastName').value.trim();
+    var phone = document.getElementById('phone').value.trim();
+    var email = document.getElementById('email').value.trim();
+    var date = document.getElementById('date').value.trim();
+    var reason = document.getElementById('reason').value.trim();
+
+    if (firstName === '' || lastName === '' || phone === '' || email === '' || date === '' || reason === '') {
+        alert('Please fill in all fields.');
+        return false;
+    }
+
+    return true;
+}
+
+    </script>
+  </head>
+  <body>
+    <div class="header">
+      <nav class="navbar navbar-dark bg-dark">
+        <div class="navbar-items">
+          <a href="homepage.html" class="navbar-item">Homepage</a>
+          <a href="portfolio.html" class="navbar-item">Portfolio</a>
+          <a href="quotation.html" class="navbar-item">Quotation</a>
+          <a href="contacts.html" class="navbar-item">Contacts</a>
+        </div>
+        <div class="navbar-item" onclick="window.location.href='news.html';">
+          <i class="fas fa-newspaper"></i> News
+        </div>
+      </nav>
+
+      <div class="row">
+        <div class="coluna1">
+          <p id="title" style="font-size: large; color: white">DiamondScript Studios</p>
+          <br />
+          Address: Rua Castilho 50, 2 floor <br />
+          1250-071 Lisbon, Portugal <br />
+          <br />
+          Contact: 212345678 or 911234567 <br />
+          <br />
+          e-mail: diamondscript@studios.pt <br />
+          <br /> <br> <br>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/?locale=pt_PT" target="_blank"
+              ><i class="fab fa-facebook white-icon"></i
+            ></a>
+            <a href="https://twitter.com/?lang=pt" target="_blank"
+              ><i class="fab fa-twitter white-icon"></i
+            ></a>
+            <a href="https://www.instagram.com/" target="_blank"
+              ><i class="fab fa-instagram white-icon"></i
+            ></a>
+            <a href="https://www.youtube.com/" target="_blank"
+              ><i class="fab fa-youtube white-icon"></i
+            ></a>
+          </div>
+        </div>
+
+        <div class="coluna2">
+
+          <h1 style="color: aliceblue; font-family: Comic Sans MS, Comic Sans, cursive;">Our location:</h1>
+          <div id="map" style="width: 100%; height: 300px;"></div> 
+
+          <script>
+              function initMap() {
+                  var location = {lat: 38.7239157915399, lng: -9.151456673586582};
+                  var map = new google.maps.Map(document.getElementById('map'), {
+                      center: location,
+                      zoom: 15
+                  });
+                  var marker = new google.maps.Marker({
+                      position: location,
+                      map: map,
+                      title: 'Minha Localização'
+                  });
+              }
+          </script>
+          <script src="https://maps.googleapis.com/maps/api/js?key=SUA_CHAVE_DA_API&callback=initMap" async defer></script>
+
+        </div>
+
+        <div class="coluna3">   
+          <form action="" method="" id="Formulario" name="" onsubmit="return validar(this)">
+              <p id="title">Book a online meeting:</p>
+              <br>
+              <table>
+                  <tr>
+                      <td>
+                          <h5>(*) Name:</h5>
+                      </td>
+                      <td style="font-size: 20px">
+                          <input class="textbox" type="text" name="nome" maxlength="50" size="30" id="nome" value="" placeholder="First and last name" required /> 
+                      </td>
+                  </tr>
+      
+                  <tr>
+                      <td>
+                          <h5>(*) Phone:</h5>
+                      </td>
+                      <td style="font-size: 20px">
+                          <input class="textbox" type="text" name="telemovel" maxlength="9" size="40" id="telemovel" value="" placeholder="Your phone number" required /> 
+                      </td>
+                  </tr>
+      
+                  <tr>
+                      <td>
+                          <h5>(*) e-mail:</h5>
+                      </td>
+                      <td style="font-size: 20px">
+                          <input class="textbox" type="text" name="email" maxlength="50" size="40" id="email" value="" placeholder="Your e-mail" required /> 
+                      </td>
+                  </tr>
+      
+                  <tr>
+                      <td>
+                          <h5>(*) Date of the meeting:</h5>
+                      </td>
+                      <td style="font-size: 20px">
+                          <input class="date" type="date" name="email" id="date" value="" required /> 
+                      </td>
+                  </tr>
+              </table>
+              <br>
+      
+              <div class="meeting">
+                  <h5>(*) Meeting reason:</h5>
+                  <textarea id="reason" required></textarea>
+              </div>
+              <br>
+              <div class="botoes">
+                  <input type="submit" name="Botao enviar" class="botao cinza" value="SUBMIT" />
+                  <input type="reset" name="Botao apagar" class="botao cinza" value="DELETE" />
+              </div>
+              <br>
+
+              <p style="font-size: small;">(*) Fields marked with an asterisk are mandatory.</p>
+          </form>
+      </div>
+      
+      
+    </div>
+    
+    
+
+  </body>
+</html>
